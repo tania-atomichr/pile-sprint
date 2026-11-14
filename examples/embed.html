@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pile Sprint: your own system</title>
+<link rel="stylesheet" href="../src/pile-sprint.css">
+</head>
+<body>
+<!-- The smallest real setup: load the pile from your server, send the answers back to it. Replace the two URLs. -->
+<button id="go">Clear my pile</button>
+<script src="../src/core.js"></script>
+<script src="../src/sources.js"></script>
+<script src="../src/destinations.js"></script>
+<script src="../src/pile-sprint.js"></script>
+<script>
+  document.getElementById("go").onclick = async () => {
+    const items = await PileSprintSources.fromEndpoint("https://your-app.example/api/pile");
+    const result = await PileSprint.open({
+      title: "Waiting on you",
+      items,
+      save: PileSprintDestinations.webhook({ url: "https://your-app.example/api/pile/decisions", pile: "waiting" })
+    });
+    console.log(result);
+  };
+</script>
+</body>
+</html>

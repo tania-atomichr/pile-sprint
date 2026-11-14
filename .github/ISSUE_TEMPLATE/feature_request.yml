@@ -1,0 +1,15 @@
+name: Idea
+description: Suggest a new source, destination or change.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: pile
+    attributes:
+      label: The pile you want to clear
+      description: What kind of items, where they live, and what keep and drop should do to them.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help
